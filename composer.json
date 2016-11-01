@@ -1,6 +1,6 @@
 {
     "name": "barbosa/packager",
-    "description": "Facades for dependencies",
+    "description": "Facade pseudo classes for dependencies",
     "type": "library",
     "version": "0.1",
     "license": "GLP-3.0",
@@ -21,6 +21,11 @@
     "autoload": {
         "psr-4": {
             "Barbosa\\Packager\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Barbosa\\Packager\\": "tests"
         }
     }
 }
