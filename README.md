@@ -25,10 +25,7 @@ Consider the following folder structure:
             TextProcessing.php
             Request.php
             services.php
-            /Facades
-                Router.php
-                TextProcessing.php
-                Request.php
+        /test
 
 The services.php file, returns an array with an alias and the corresponding namespace and the following sintax: 
     
@@ -46,71 +43,49 @@ The services.php file, returns an array with an alias and the corresponding name
 
     ];
 
-In the MainClass.php file, invoke to **AliasLoader::setAliases** method:
+In the MainClass.php file, invoke to **ServiceLoader::load()** method:
     
     <?php
 
     namespace Some\Namespace;
 
-    use Barbosa\Packager\AliasLoader;
+    use Barbosa\HackPack\ServiceLoader;
 
     class MainClass
     {
         public function __construct
         {
-            $aliases = require 'services.php';
-            AliasLoader::setAliases($aliases);
+            $services = require 'services.php';
+            ServiceLoader::load($services);
         }
     }
 
-The **AliasLoader::setAliases** method used to record the namespaces and can be called from anywhere in the application.
+The **ServiceLoader::load()** method loads the objects in function style, wich are available in the application.
 
-The facades classes must be created in the folder Facades:
-
-    <?php
-
-    namespace Some\Namespace\Facade;
-
-    use Barbosa\Packager\AccessFacade;
-    use Barbosa\Packager\FacadeInterface;
-
-    class Router extends AccessFacade implements FacadeInterface
-    {
-        public static function getServiceName()
-        {
-            return 'router';
-        }
-    }
-
-For each service or class, it must be created a facade.
-
-Now you can invoke static style services from anywhere in the application, just by using the namespace of the facade. Example: 
+Now you can invoke services in functions style from anywhere in the application. Example: 
 
     <?php
 
     namespace Some\Namespace;
 
-    use Barbosa\Packager\AliasLoader;
-    use Some\Namespace\Facades\Request
+    use Barbosa\HackPack\ServiceLoader;
 
     class MainClass
     {
         public function __construct
         {
             $aliases = require 'services.php';
-            AliasLoader::setAliases($aliases);
+            ServiceLoader::load($services);
         }
 
         public function resolveUri($uri)
         {
-            return Request::parseUri($uri);
+            return request()->parseUri($uri);
         }
     }
 
-## Credits
-- www.sitepoint.com
-- Inspired by Laravel: Facade class
-
+The object name in function style, depends on the name assigned in the array. This is an alternative 
+to [Packager Library](http://github.com/barbosa89/packager).
 
 ## Contribute
 1. Check for open issues or open a new issue to start a discussion around a bug or feature.
