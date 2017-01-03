@@ -87,6 +87,17 @@ Now you can invoke services in functions style from anywhere in the application.
 The object name in function style, depends on the name assigned in the array. This is an alternative 
 to [Packager Library](http://github.com/barbosa89/packager).
 
+## Exaples
+
+    # Pass parameters to the constructor
+    request($uri)->parseUri();
+
+    # Pass parameters to methods
+    request()->parseUri($uri);
+
+    # Chaining of methods
+    request()->parseUri($uri)->getResult();
+
 ## Contribute
 1. Check for open issues or open a new issue to start a discussion around a bug or feature.
 2. Fork the repository on GitHub to start making your changes.
