@@ -3,7 +3,7 @@
     "description": "Invoking objects in function style",
     "type": "library",
     "version": "0.1",
-    "license": "GLP-3.0",
+    "license": "MIT",
     "keywords": ["hack", "dependencies", "services", "function style"],
     "authors": [
         {
